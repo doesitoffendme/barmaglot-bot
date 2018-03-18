@@ -120,7 +120,7 @@ switch($message) {
         $news_string = "";
         if ($news) {
           foreach ($news['documents'] as $new) {
-            $news_string .= $new['title'] . "https://meduza.io/" . $new['url'];
+            $news_string .= $new['title'] . "meduza&quot;io" . $new['url'];
           }
           sendMessage($chat_id, $news_string);
         } else {
