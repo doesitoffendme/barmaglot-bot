@@ -176,7 +176,7 @@ switch($message) {
  */
 function sendMessage($chat_id, $message) {
     error_log($message);
-    file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . $message);
+    file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . urlencode($message));
 }
 function sendChatAction($chat_id, $action){
     file_get_contents($GLOBALS['api'] . '/sendChatAction?chat_id=' . $chat_id . '&action=' . $action);
