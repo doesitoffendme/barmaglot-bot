@@ -119,7 +119,7 @@ switch($message) {
         $news_string = "";
         if ($news) {
           foreach ($news['documents'] as $new){
-            $news_string .= substr($new['title'], 0, 50) . " meduza.io/". $new['url'] . "\n ";
+            $news_string .= urlencode($new['title']) . " meduza.io/". $new['url'] . "\n ";
           }
           sendMessage($chat_id, $news_string);
         } else {
@@ -176,7 +176,7 @@ switch($message) {
  */
 function sendMessage($chat_id, $message) {
     error_log($message);
-    file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . urlencode($message));
+    file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . $message);
 }
 function sendChatAction($chat_id, $action){
     file_get_contents($GLOBALS['api'] . '/sendChatAction?chat_id=' . $chat_id . '&action=' . $action);
