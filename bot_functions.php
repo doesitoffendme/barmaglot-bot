@@ -116,7 +116,7 @@ switch($message) {
     case '/news':
         sendChatAction($chat_id, 'typing');
         $news = json_decode(cURL($meduza_api), true);
-        error_log($news);
+        error_log(implode($news));
         $news_string = "";
         if ($news) {
           foreach ($news['documents'] as $new){
@@ -176,7 +176,7 @@ switch($message) {
  * Функция отправки сообщения sendMessage().
  */
 function sendMessage($chat_id, $message) {
-    file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . urlencode($message));
+    file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . $message);
 }
 function sendChatAction($chat_id, $action){
     file_get_contents($GLOBALS['api'] . '/sendChatAction?chat_id=' . $chat_id . '&action=' . $action);
