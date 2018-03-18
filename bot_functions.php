@@ -17,7 +17,7 @@ $api = 'https://api.telegram.org/bot' . $access_token;
  */
 $meduza = 'https://meduza.io';
 $meduza_rss = $meduza . '/rss/%s';
-$meduza_api = $meduza . '/api/v3/search?chrono=news&page=0&per_page=10&locale=ru';
+$meduza_api = $meduza . '/api/v3/search?chrono=news&page=2&per_page=10&locale=ru';
 
 $gramota = 'http://gramota.ru';
 $gramota_api = $gramota . '/slovari/dic/?lop=x&bts=x&word=';
@@ -120,8 +120,7 @@ switch($message) {
         $news_string = "";
         if ($news) {
           foreach ($news['documents'] as $new) {
-            $new_string = $string = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', $new['title'] . " https://meduza.io/". $new['url'] . "\n");
-            $news_string .= $new_string;
+            $news_string .= $new['title'] . " https://meduza.io/". $new['url'] . "\n";
           }
           sendMessage($chat_id, $news_string);
         } else {
