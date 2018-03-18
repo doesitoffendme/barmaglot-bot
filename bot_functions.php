@@ -120,7 +120,7 @@ switch($message) {
         $news_string = "";
         if ($news) {
           foreach ($news['documents'] as $new) {
-            $news_string .= $new['title'] . 'm'. $new['url'];
+            $news_string .= $new['title'] . "m" . $new['url'];
           }
           sendMessage($chat_id, $news_string);
         } else {
