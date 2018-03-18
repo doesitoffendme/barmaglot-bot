@@ -115,8 +115,8 @@ switch($message) {
         break;
     case '/news':
         sendChatAction($chat_id, 'typing');
-        $news = cURL($meduza_api);
-        sendMessage($chat_id, $news);
+        $news = json_decode(cURL($meduza_api), true);
+        error_log($news);
         $news_string = "";
         if ($news) {
           foreach ($news['documents'] as $new){
