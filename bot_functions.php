@@ -30,6 +30,7 @@ $message = $output['message']['text'];
 
 $rita_id = '68239504';
 $current_time = date("d.m.y" ,time());
+$rita_mod = false;
 if ($chat_id == $rita_id)
     $rita_mod = true;
 /**
@@ -118,8 +119,9 @@ switch($message) {
         $news = json_decode(cURL($meduza_api), true);
         $news_string = "";
         if ($news) {
-          foreach ($news['documents'] as $new){
-            $news_string .= mb_convert_encoding($new['title'] . " https://meduza.io/". $new['url'] . "\n", 'UTF-8', 'UTF-8');
+          foreach ($news['documents'] as $new) {
+            $new_string = $string = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', $new['title'] . " https://meduza.io/". $new['url'] . "\n");
+            $news_string .= $new_string;
           }
           sendMessage($chat_id, $news_string);
         } else {
