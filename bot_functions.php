@@ -119,7 +119,7 @@ switch($message) {
         $news_string = "";
         if ($news) {
           foreach ($news['documents'] as $new){
-            $news_string .= $new['title'] . " https://meduza.io\\/". $new['url'] . "\n";
+            $news_string .= mb_convert_encoding($new['title'] . " https://meduza.io/". $new['url'] . "\n", 'UTF-8', 'UTF-8');
           }
           sendMessage($chat_id, $news_string);
         } else {
