@@ -115,10 +115,8 @@ switch($message) {
         break;
     case '/news':
         sendChatAction($chat_id, 'typing');
-        $news = cURL($meduza_api);
+        $news = json_decode(cURL($meduza_api), true);
         $news_string = "";
-        sendMessage($chat_id, $news);
-        var_dump($news);
         if ($news) {
           foreach ($news['documents'] as $new){
             $news_string .= $new['title'] . " meduza.io/". $new['url'] . "\n ";
@@ -205,6 +203,7 @@ function cURL($url){
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_ENCODING, '');
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     $result = curl_exec($ch);
     //var_dump($result);
     curl_close($ch);
