@@ -121,7 +121,7 @@ switch($message) {
           foreach ($news['documents'] as $new){
             $news_string .= $new['title'] . "\n";
           }
-          sendMessage($chat_id, $new['title']);
+          sendMessage($chat_id, $news_string);
         } else {
           sendMessage($chat_id, "Не могу получить новости =(");
         }
