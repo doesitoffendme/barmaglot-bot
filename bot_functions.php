@@ -17,7 +17,7 @@ $api = 'https://api.telegram.org/bot' . $access_token;
  */
 $meduza = 'https://meduza.io';
 $meduza_rss = $meduza . '/rss/%s';
-$meduza_api = $meduza . '/api/v3/search?chrono=news&page=2&per_page=10&locale=ru';
+$meduza_api = $meduza . '/api/v3/search?chrono=news&page=0&per_page=10&locale=ru';
 
 $gramota = 'http://gramota.ru';
 $gramota_api = $gramota . '/slovari/dic/?lop=x&bts=x&word=';
@@ -177,7 +177,7 @@ switch($message) {
  */
 function sendMessage($chat_id, $message) {
     error_log($message);
-    file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . urlencode($message));
+    file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . iconv("UTF-8", "UTF-8//IGNORE", urlencode($message)));
 }
 function sendChatAction($chat_id, $action){
     file_get_contents($GLOBALS['api'] . '/sendChatAction?chat_id=' . $chat_id . '&action=' . $action);
