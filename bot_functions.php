@@ -120,7 +120,7 @@ switch($message) {
         $news_string = "";
         if ($news) {
           foreach ($news['documents'] as $new){
-            $news_string .= $new['title'] . " meduza.io/". $new['url'] . "\n ";
+            $news_string .= substr($new['title'], 0, 50) . " meduza.io/". $new['url'] . "\n ";
           }
           sendMessage($chat_id, $news_string);
         } else {
@@ -128,7 +128,7 @@ switch($message) {
         }
         break;
     case '/help':
-        $help_string = "/weather - Погода в краснодаре ". $emoji['weather']['clear'] . "\n";
+        $help_string = "/weather - Погода в Краснодаре ". $emoji['weather']['clear'] . "\n";
         $help_string .= "/news - 10 последних новостей с meduza ". $emoji['newspaper']. "\n";
         $help_string .= "*слово на русском* - бот ищет требуемое на gramota.ru ". $emoji['pen']. "\n";
         sendMessage($chat_id, $help_string);
